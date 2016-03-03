@@ -96,14 +96,14 @@ bool CircularList<T>::findData(T data, int &dis)
 	if (head == nullptr)
 		return  false;
 
-	Node<T> * tmp;
+	Node<T> * tmp = head;
 	int run = 1;
+	int count = 0;
+	bool notFound = false;
 	dis = 0;
 	
-	while ((run <=  size*2))
+	while (!notFound)
 	{
-		tmp = head;
-		dis = 0;
 		for (int i = 0; i <= run; i++)
 		{
 			if (tmp->data == data)
@@ -111,11 +111,11 @@ bool CircularList<T>::findData(T data, int &dis)
 
 			tmp = tmp->next;
 			dis++;
+			count++;
+			notFound = true;
 			
 		}
-
-		tmp = head;
-		dis = 0;
+		
 		run *= 2;
 		for (int i = 0; i <= run; i++)
 		{
@@ -124,8 +124,14 @@ bool CircularList<T>::findData(T data, int &dis)
 
 			tmp = tmp->prev;
 			dis--;
+			count++;
+			notFound = false;
 			
 		}
+		//cout << count/2 <<  " " << run <<endl;
+
+		
+
 		run *= 2;	
 	}
 
