@@ -8,8 +8,13 @@ int srokMax(string &str1, string &str2);
 
 int main() {
 	
-	string s1 = "aaaeeeesssvvvvddd";
+	string s1 = "aaaeeeesssvvvvddd"; // 3 times
 	string s2 = "asd";
+	string s3 = "aaaaaaaaahuohingoengoosssssssssnibornbiornddddddddd"; // 9 times
+	string s4 = "bvribraaaaanburnrusssssnuirnddddd"; // 5 times
+	string s5 = "aaaaaaaanbirnbrossssssssnitnirtbdddddddd"; // 8 times
+	
+
 	//int key = 2;
 	//if (srok(s1, s2, key))
 	//{
@@ -18,7 +23,11 @@ int main() {
 	//else {
 	//	cout << "no" << endl;
 	//}
-	int maxS = srokMax(s1,s2);
+
+	//int maxS = srokMax(s1,s2); // max 3 times
+	//int maxS = srokMax(s3, s2); // max 9 times
+	//int maxS = srokMax(s4, s2); // max 5 times
+	int maxS = srokMax(s5, s2); // max 8 times
 	cout << "the max is: " <<maxS << endl;
 	system("pause");
 	return 0;
@@ -56,12 +65,12 @@ int srokMax(string & str1, string & str2)
 	int rangeMin = 1;
 	int rangeMax = 1;
 	int mid = 0;
-	while (srok(str1,str2, rangeMax) ) {
+	while (srok(str1,str2, rangeMax) && rangeMax <= str1.size()/str2.size()) {
 		rangeMax *= 2;
 	}
 	rangeMin = rangeMax/2;
-	mid = rangeMax - rangeMin ;
-	while ( mid >0) {
+	mid = rangeMin + (rangeMax - rangeMin )/2;
+	while (rangeMin < rangeMax) {
 		
 		if (srok(str1, str2, mid)) {
 			maxkey = mid;
@@ -70,7 +79,7 @@ int srokMax(string & str1, string & str2)
 		else {
 			rangeMax = mid;
 		}
-		mid = (rangeMax - rangeMin) / 2;
+		mid = rangeMin + (rangeMax - rangeMin) / 2;
 
 		
 		
