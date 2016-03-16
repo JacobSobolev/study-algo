@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (lab3-1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+d:\bitbucket\study-algo\algorithms\lab3-1\main.cpp(55): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\lab3-1\main.cpp(61): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\bitbucket\study-algo\algorithms\lab3-1\main.cpp(115): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\bitbucket\study-algo\algorithms\lab3-1\main.cpp(230): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  lab3-1.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\lab3.exe
+  lab3-1.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\lab3.pdb (Partial PDB)

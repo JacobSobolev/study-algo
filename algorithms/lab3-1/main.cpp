@@ -4,6 +4,7 @@
 #include <time.h>       /* time */
 #define N 10000
 #define M 10
+#define P 20
 using namespace std;
 
 void ex1();
@@ -17,10 +18,15 @@ void initRandomArray(int *a);
 void minMaxIteration(int *a,int n,int *max,int *min);
 void minMaxRecursion(int *a,int n,int *max,int *min);
 
+void ex3();
+void initRandomArray2(int *a,int n);
+int findT(int *a,int n);
+int findT2(int *a, int n);
 
 void main() {
 	//ex1();
-	ex2();
+	//ex2();
+	ex3();
 	system("pause");
 	
 }
@@ -207,6 +213,71 @@ void minMaxRecursion(int * a, int n, int * max, int * min)
 
 
 
+}
+
+void ex3()
+{
+	int arr[P] = { 0 };
+	initRandomArray2(arr,P);	
+	printArr(arr, P);
+	//int t = findT(arr,P);
+	int t = findT2(arr, P);
+	cout << "The T is:" << t;
+}
+
+void initRandomArray2(int * a,int n)
+{
+	srand(time(NULL));
+	int t = rand() % n;
+	for (size_t i = 0; i < t; i++)
+	{
+		a[i] = 1;
+	}
+}
+
+int findT(int * a, int n)
+{
+	int low = 0;
+	int high = n;
+	int mid;
+	while (low<high)
+	{
+		mid = (high - low) / 2 + low;
+		if (a[mid]) {
+			low = mid + 1;
+		}
+		else {
+			high = mid ;
+		}
+	}
+	
+	return mid;
+}
+
+int findT2(int * a, int n)
+{
+	int low = 0;
+	int high = n;
+	int mid;
+	int k = 1;
+
+	while (a[k]) {
+		k *= 2;
+	}
+	high = k;
+
+	while (low<high)
+	{
+		mid = (high - low) / 2 + low;
+		if (a[mid]) {
+			low = mid + 1;
+		}
+		else {
+			high = mid;
+		}
+	}
+
+	return mid;
 }
 
 
