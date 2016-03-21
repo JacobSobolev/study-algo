@@ -1,0 +1,6 @@
+﻿  main.cpp
+c:\bitbucket\study-algo\algorithms\lab4\main.cpp(37): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\bitbucket\study-algo\algorithms\lab4\main.cpp(74): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\bitbucket\study-algo\algorithms\lab4\main.cpp(117): warning C4715: 'randSelectIteration': not all control paths return a value
+  lab4.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab4.exe
+  lab4.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab4.pdb (Partial PDB)
