@@ -1,0 +1,13 @@
+3168898162 307802769
+maxMax1
+Max1=99
+Max2=78
+Time=0.000
+maxMax2
+Max1=99
+Max2=78
+Time=0.000
+maxMax3
+Max1=99
+Max2=78
+Time=0.000
