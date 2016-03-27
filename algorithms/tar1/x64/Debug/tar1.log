@@ -1,5 +1,4 @@
-﻿  main.cpp
-d:\bitbucket\study-algo\algorithms\tar1\main.cpp(55): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-d:\bitbucket\study-algo\algorithms\tar1\main.cpp(213): warning C4715: 'maxMax1': not all control paths return a value
+﻿  MaxMaxAlgo.cpp
+d:\bitbucket\study-algo\algorithms\tar1\maxmaxalgo.cpp(55): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   tar1.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\tar1.exe
   tar1.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\tar1.pdb (Partial PDB)
