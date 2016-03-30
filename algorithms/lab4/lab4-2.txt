@@ -1,0 +1,36 @@
+
+//functions for findMinI
+findMedian(array,size) // returns the median
+padToArray(array,size,amount,value) //adds additional cells to the end fo the array with the value "value"
+
+//functions for FindJnumbersToMedian
+randSelect(array,size,low,high,index); //returns the i member of the array
+diffArray(array,size,value); //returns an array that each member is abs(a[i] - value)
+
+
+findMinI(array,size,index): // returns the lowset i
+	if (index = size/2):
+		return findMedian(array,size/2)
+	if (index > size/2):
+		numOfPads = index*2-size
+		valToPad = int_max
+	else
+		numOfPads = size-2*index
+		valToPad = int_min
+	newArray = padToArray(array,size,numOfPads,valToPad)
+
+	return findMedian(newArray,size+numOfPads)
+	
+findJnumbersToMedian(array,size,j): //return array of j numbers closest to the median
+	if (j==size)
+		return array
+	median = findMedian(array,size)
+	newArray = diffArray(array,size,median)
+	
+	top = randSelect(newArray,size,0,size-1,j+1)
+	
+	foreach (item in array):
+		if (abs(item - median)< top):
+			returnArray += item
+	
+	return returnArray
