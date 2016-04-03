@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\bitbucket\study-algo\algorithms\lab5\main.cpp(68): warning C4715: 'findMember': not all control paths return a value
+  lab5.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab5.exe
+  lab5.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab5.pdb (Partial PDB)
