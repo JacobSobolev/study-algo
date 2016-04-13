@@ -13,10 +13,14 @@ int* preFixFunc(string &str);
 void lab6Ex3();
 int KMP(string &text, string &sub);
 
+void lab6Ex4();
+bool isRotationText(string &text1, string &text2);
+
 void main() {
-	lab6Ex1();
+	//lab6Ex1();
 	//lab6Ex2();
 	//lab6Ex3();
+	lab6Ex4();
 	system("pause");
 }
 
@@ -118,7 +122,7 @@ void lab6Ex3()
 {
 	
 	string text = "ababbabbababbababbabb";
-	string sub = "aba";
+	string sub = "babab";
 	int index = KMP(text, sub);
 	cout << "The text is: " << text << endl;
 	cout << "The sub is: " << sub << endl << endl;
@@ -140,13 +144,38 @@ int KMP(string & text, string & sub)
 	int q = 0;
 	for (int i = 0; i < text.size(); i++)
 	{
-		while (q > 0 && pieArr[q] != text[i])
+		while (q > 0 && sub[q] != text[i])
 			q = pieArr[q-1];
-		if (pieArr[q] == text[i])
+		if (sub[q] == text[i])
 			q++;
 		if (q == sub.size())
-			return i - q;
+			return i - q + 1;
 	}
 
 	return -1;
+}
+
+void lab6Ex4()
+{
+	string text1 = "car";
+	string text2 = "arc";
+
+	
+	cout << "The text1 is: " << text1 << endl;
+	cout << "The text2 is: " << text2 << endl << endl;
+	if (isRotationText(text1,text2)) {
+		cout << "text1 is rotation of text2 "   << endl;
+	}
+	else {
+		cout << "text1 isn't rotation of text2 "  << endl;
+	}
+}
+
+bool isRotationText(string & text1, string & text2)
+{
+	text1 += text1;
+	if (KMP(text1, text2)!=-1) {
+		return true;
+	}
+	return false;
 }
