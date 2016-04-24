@@ -19,7 +19,7 @@ bool isRotationText(string &text1, string &text2);
 void main() {
 	//lab6Ex1();
 	//lab6Ex2();
-	//lab6Ex3();
+	lab6Ex3();
 	lab6Ex4();
 	system("pause");
 }
@@ -128,10 +128,10 @@ void lab6Ex3()
 	cout << "The sub is: " << sub << endl << endl;
 
 	if (index != -1) {
-		cout << "the kmp found on index: " << index << endl;
+		cout << "the kmp found on index: " << index << endl << endl;
 	}
 	else {
-		cout << "the kmp didn't found in text" << endl;
+		cout << "the kmp didn't found in text" << endl << endl;
 	}
 }
 

@@ -1,5 +1,5 @@
 ﻿  main.cpp
-d:\bitbucket\study-algo\algorithms\lab6\main.cpp(73): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\bitbucket\study-algo\algorithms\lab6\main.cpp(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  lab6.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\lab6.exe
-  lab6.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\lab6.pdb (Partial PDB)
+c:\bitbucket\study-algo\algorithms\lab6\main.cpp(73): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\bitbucket\study-algo\algorithms\lab6\main.cpp(84): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  lab6.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab6.exe
+  lab6.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab6.pdb (Partial PDB)
