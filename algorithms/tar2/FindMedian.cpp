@@ -1,4 +1,4 @@
-//316898162 otherid
+//316898162 307802769
 
 #include <iostream>
 #include <fstream>
@@ -8,49 +8,73 @@
 
 using namespace std;
 
-void parseData(ifstream *readFile, vector<int> &v1, vector<int> &v2);
-void printVector(vector<int> &v1);
+bool parseData(ifstream *readFile, vector<int> &v1, vector<int> &v2);
 int findMedian(vector<int> &v1, vector<int> &v2,int low1,int high1,int low2,int high2);
-void printV(vector<int> &v, int low, int high);
 
-int findMedian2(vector<int> &v1, vector<int> &v2);
 
 int main(int argc, char *argv[]) {
 
+	ofstream outFile;
+	outFile.open("Out.txt");
+	ofstream idFile;
+	idFile.open("ID.txt");
+	idFile << "3168898162 307802769\n";
+
+
 	if (argc == 1) {
-		cout << "please input the input file to the program's first argument " << endl;
+		outFile << "please input the input file to the program's first argument ";
 	}
 	else {
 		ifstream readFile;
-		//cout << argv[1];
 		readFile.open(argv[1]);
 		if (readFile.is_open()) {
 
 			vector<int> v1, v2;
 
-			parseData(&readFile, v1, v2);
+			if (parseData(&readFile, v1, v2)) {
+				
 
-			printVector(v1);
-			printVector(v2);
+				
 
-			int med = findMedian(v1, v2, 0, v1.size()-1 , 0, v2.size()-1 );
-			//int med = findMedian2(v1,v2);
+				cout << endl;
 
-			cout << "The med: " << med << endl;
+				if (v1.size()  == 0 || v2.size() == 0) {
+					if (v1.size() == 0 && v2.size() == 0) {
+						outFile << -1;
 
+
+					}
+					else if (v1.size()  == 0 ){
+						int med = (v2.size() - 1) / 2;
+						outFile << med;
+					}
+					else {
+						int med = (v1.size() - 1) / 2;
+						outFile << med;
+					}
+					
+				}
+				else {
+					int med = findMedian(v1, v2, 0, v1.size() - 1, 0, v2.size() - 1);
+					outFile << med;
+				}	
+			}
+
+			
 			readFile.close();
-
-			//cout << "yes " << endl;
+		
 		}
 		else {
-			cout << "input file doesn't exists " << endl;
+			outFile << "input file doesn't exists ";
 		}
 	}
-	system("pause");
+	//system("pause");
+	idFile.close();
+	outFile.close();
 	return 0;
 }
 
-void parseData(ifstream * readFile, vector<int>& v1, vector<int>& v2)
+bool parseData(ifstream * readFile, vector<int>& v1, vector<int>& v2)
 {
 	vector<int> numbers;
 	int num;
@@ -61,26 +85,32 @@ void parseData(ifstream * readFile, vector<int>& v1, vector<int>& v2)
 	getline(*readFile, line);
 	n = atoi(line.c_str());
 	getline(*readFile, line);
-	stringstream lineStream(line);
-	while (lineStream >> num) v1.push_back(num);
-	if (v1.size() != n) {
-		cout << "incorrect structure input file" << endl;
-		return ;
+	if (n != 0) {
+		stringstream lineStream(line);
+		while (lineStream >> num) v1.push_back(num);
+		if (v1.size() != n) {
+			cout << "incorrect structure input file" << endl;
+			return false;
+		}
 	}
+	
 
 	//second arr
 	getline(*readFile, line);
 	n = atoi(line.c_str());
 
 	getline(*readFile, line);
-	stringstream lineStream2(line);
-	while (lineStream2 >> num) v2.push_back(num);
-	if (v2.size() != n) {
-		cout << "incorrect structure input file" << endl;
-		return;
+	if (n != 0) {
+		stringstream lineStream2(line);
+		while (lineStream2 >> num) v2.push_back(num);
+		if (v2.size() != n) {
+			cout << "incorrect structure input file" << endl;
+			return false;
+		}
 	}
+	
 
-
+	return true;
 
 	
 }
@@ -95,239 +125,65 @@ void printVector(vector<int>& v1)
 
 int findMedian(vector<int>& v1, vector<int>& v2, int low1, int high1, int low2, int high2)
 {
-	//bool size = false;
-	//if ((low1 + high1) % 2 == 0)
-	//	size = true;
 
-	static int count = 0;
-	cout << "iterration: " << count << endl;
-	printV(v1, low1, high1);
-	printV(v2, low2, high2);
 
 	//cout << endl;
 	
-	if (high1 == low1 && high2 == low2 ) {
-		if (v1[high1] < v2[high2])
-			return v1[high1];
-		else
-			return v2[high2];
+	int size1 = high1 - low1 + 1;
+	int size2 = high2 - low2 + 1;
+	if (v1[high1] < v2[low2] || v2[high2] < v1[low1]) {
+		
+		int med = (size1 + size2 - 1) / 2;
+
+		if (v1[high1] < v2[low2]) {
+			if (med < size1) {
+				return v1[med + low1];
+			}
+			else {
+				return v2[med - high1 -1];
+			}
+		}
+		else if (v2[high2] < v1[low1]) {
+			if (med < size2) {
+				return v2[med + low2];
+			}
+			else {
+				return v1[med - high2 -1];
+			}
+		}
+		
 	}
-	//int med1 = (high1 - low1 + 1) / 2;
-	//int med2 = (high2 - low2 + 1) / 2;
 
-	int med1 = (high1 + low1 ) / 2;
-	int med2 = (high2 + low2 ) / 2;
-	count++;
-	cout << "med1: " << v1[med1] << " med2: " << v2[med2] << endl;
-
-	cout << endl;
-	cout << endl;
+	int med1 = (high1 + low1) / 2;
+	int med2 = (high2 + low2) / 2;
 
 	if (v1[med1] > v2[med2]) {
-
-		int itemsDropV1 = high1 - med1 ;
-		int itemsDropV2 = med2 - low2 ;
-		
-		
-		if (itemsDropV2 != itemsDropV1 && med2 <= high2 - abs(itemsDropV2 - itemsDropV1))
-			med2 += abs(itemsDropV2 - itemsDropV1);
-
-		if (itemsDropV1 == itemsDropV2)
-			med2 += 1;
-
-		return findMedian(v1, v2, low1, med1, med2 , high2);
+		int itemsDropV1 = high1 - med1;
+		int itemsDropV2 = med2 - low2;
 
 
+		if (itemsDropV1 == 0 && size1!=1) {
+			med1--;
+		}
+		if (itemsDropV2 == 0 && size2!=1) {
+			med2++;
+		}
 
-		/*if (itemsDropV2 > itemsDropV1 && high2 >= med2 + (itemsDropV2 - itemsDropV1))
-			high2 -= itemsDropV2 - itemsDropV1;
-		if (itemsDropV1 > itemsDropV2 && low1 <= med1 -(itemsDropV1 - itemsDropV2))
-			low1 += itemsDropV1 - itemsDropV2;
-		if (itemsDropV1 == itemsDropV2)
-			med2 += 1;
-
-		return findMedian(v1, v2, low1, med1, med2 , high2);*/
-
-
-		//int size1 = high1 - low1 + 1;
-		//int size2 = high2 - low2 + 1;
-
-		//if (size1>size2)
-		//	return findMedian(v1, v2, low1+size1-size2, med1, med2, high2);
-		//if (size2>size1)
-		//	return findMedian(v1, v2, low1, med1, med2, high2 - size2+size1);
-
-		
-
-
-		//return findMedian(v1, v2, low1, med1, med2, high2);
-
-		//if (itemsDropV1 < itemsDropV2)
-		//	return findMedian(v1, v2, low1, med1, med2 + 1, high2 - itemsDropV2);
-		//else
-		//	return findMedian(v1, v2, low1, med1, med2 + 1, high2 - itemsDropV2);
-
-		//return findMedian(v1, v2, low1, med1 , med2 , high2);
-
-		
-
-		/*if (size)
-			return findMedian(v1, v2, low1, med1, med2 + 1, high2);
-		else
-			return findMedian(v1, v2, low1 , med1 , med2 , high2 );*/
-
-		//return findMedian(v1, v2, low1, med1 -1, med2 + 1, high2);
-
-		/*if (itemsDropV1 >= itemsDropV2)
-			return findMedian(v1, v2, low1, med1 - itemsDropV1, med2 + itemsDropV2, high2);
-		else
-			return findMedian(v1, v2, low1 + itemsDropV1, med1 , med2 , high2 - +itemsDropV2);*/
-
-
-
-
-
-		/*if (itemsDropV2 == 0 && itemsDropV1 == 0)
-			return findMedian(v1, v2, low1, high1-1, low2+1, high2 );
-		if (itemsDropV1 == itemsDropV2)
-			return findMedian(v1, v2, low1, med1 - 1, med2 + 1, high2);
-		else
-			return findMedian(v1, v2, low1+itemsDropV1- itemsDropV2, high1 , low2 , high2 - itemsDropV2 );*/
-
-		//return findMedian(v1, v2, low1, v1.size()-1, low2, v2.size()-1);
+		return findMedian(v1, v2, low1, med1, med2, high2);
 	}
 	else {
+		int itemsDropV1 = med1 - low1;
+		int itemsDropV2 = high2 - med2;
 
 
-
-		int itemsDropV1 = med1 - low1; 
-		int itemsDropV2 = high2 - med2 ;
-
-
-		if (itemsDropV2 != itemsDropV1 && med1<= high1 - abs(itemsDropV2 - itemsDropV1))
-			med1 += abs(itemsDropV2 - itemsDropV1);
-		if (itemsDropV1 == itemsDropV2)
-			med1 += 1;
+		if (itemsDropV1 == 0 && size1!=1) {
+			med1++;
+		}
+		if (itemsDropV2 == 0 && size2!=1) {
+			med2--;
+		}
 
 		return findMedian(v1, v2, med1, high1, low2, med2);
-
-		//if (itemsDropV2 > itemsDropV1 && low2<=med2 - (itemsDropV2-itemsDropV1))
-		//	low2 += itemsDropV2 - itemsDropV1;
-		//if (itemsDropV1 > itemsDropV2 && high1 >= med1 + (itemsDropV1 - itemsDropV2))
-		//	high1 -= itemsDropV1 - itemsDropV2;
-		//if (itemsDropV1 == itemsDropV2)
-		//	med1 += 1;
-
-		//return findMedian(v1, v2, med1 , high1, low2, med2);
-	
-		//int size1 = high1 - low1 + 1;
-		//int size2 = high2 - low2 + 1;
-
-		//
-		//if (size1 > size2)
-		//	return findMedian(v1, v2, med1 + size1 - size2, high1, low2, med2);
-		//if (size2 > size1)
-		//	return findMedian(v1, v2, med1 , high1, low2, med2 - size2 + size1);
-
-
-		/*return findMedian(v1, v2, med1, high1, low2, med2);*/
-
-		//int itemsDropV1 = med1 - low1; 
-		//int itemsDropV2 = high2 - med2 ;
-
-
-		//if (itemsDropV2 < itemsDropV1)
-		//	return findMedian(v1, v2, med1 + 1, high1 - itemsDropV2, low2, med2);
-
-		//return findMedian(v1, v2, med1 + 1, high1, low2, med2);
-
-
-		//if (size)
-		//	return findMedian(v1, v2, med1 +1 , high1, low2, med2 );
-		//else
-		//	return findMedian(v1, v2, med1 , high1 , low2 , med2 );
-
-		
-
-		/*if (itemsDropV1 >= itemsDropV2)
-			return findMedian(v1, v2, med1 + itemsDropV1, high1, low2, med2 - itemsDropV2);
-		else
-			return findMedian(v1, v2, med1 , high1 - itemsDropV1, low2+ itemsDropV2, med2 );*/
-
-		/*if (itemsDropV2 == 0 && itemsDropV1 == 0)
-			return findMedian(v1, v2, low1+1, high1, low2, high2-1);
-		else if (itemsDropV1 == itemsDropV2)
-			return findMedian(v1, v2, med1 + 1 , high1, low2, med2 - 1);	
-		else
-			return findMedian(v1, v2, low1  , high1 - itemsDropV1, low2 + itemsDropV2, high2 );
-		*/
-
-
-	}
-
-	
-}
-
-void printV(vector<int>& v, int low, int high)
-{
-	for (int i = low; i <= high; i++)
-	{
-		cout << v[i] << " ";
-	}
-	cout << endl;
-}
-
-int findMedian2(vector<int>& v1, vector<int>& v2)
-{
-	if (v1.size() == 0 && v2.size() == 0) {
-		if (v1[0] < v2[0])
-			return v1[0];
-		else
-			return v2[0];
-	}
-	int med1 = (v1.size() ) / 2;
-	int med2 = (v2.size() ) / 2;
-	if (v1[med1] > v2[med2]) {
-		
-
-		int itemsDropV1 = med1 ;
-		int itemsDropV2 = v2.size() - med2 -1 ;
-
-
-
-		//if (itemsDropV1 == itemsDropV2) {
-		//	for (int i = 0; i < itemsDropV1; i++){
-		//		v1.pop_back();
-		//		v2.erase(v2.begin());
-		//	}
-		//}
-
-		//else {
-		//	for (int i = 0; i < itemsDropV1; i++){
-		//		v1.erase(v1.begin());
-		//	}
-		//	for (int i = 0; i < itemsDropV2; i++){
-		//		v2.pop_back();
-		//	}
-		//}
-
-		for (int i = 0; i < itemsDropV1; i++) {
-			v1.pop_back();
-			//v1.erase(v1.begin());
-		}
-		for (int i = 0; i < itemsDropV2; i++) {
-			//v2.pop_back();
-			v2.erase(v2.begin());
-
-		}
-
-		return findMedian2(v1, v2);
-
-	}
-	else {
-
-
-
 	}
 	
 }
