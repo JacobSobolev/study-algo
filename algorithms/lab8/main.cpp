@@ -1,5 +1,8 @@
 #include <iostream>
 #include <stack>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 #define N 4
 
@@ -10,6 +13,7 @@ int ** mountion(int matrix[][N], int &maxI, int&maxJ);
 void printPathMountion(int originalMatrix[][N], int ** sumMatrix, int &maxI, int maxJ);
 
 void lab8ex2();
+int eDist(string &s1, string &s2,int **matrix);
 
 void main() {
 
@@ -176,5 +180,86 @@ void printPathMountion(int originalMatrix[][N], int ** sumMatrix,int &maxI,int m
 
 void lab8ex2()
 {
+	/*
+				0		,	i=j=0
+				s[i,j-1]+1	,	i=0, j>0
+	s[i,j] =	s[i-1,j]+1	,	i>0, j=0
+				min(s[i-1,j] + 1,s[i-1,j-1],s[i,j-1]+1 )	,	i>0,j>0 , st1[j]==st2[i]
+				min(s[i-1,j],s[i-1,j-1],s[i,j-1])			,	i>0,j>0 , st1[j]!=st2[i]
 
+	*/
+
+	string s1 = "Saturday";
+	string s2 = "Sunday";
+	int** matrix = new int*[s2.size()+1];
+	for (int i = 0; i < s2.size()+1; i++)
+	{
+		matrix[i] = new int[s1.size()+1];
+	}
+
+	for (int i = 0; i < s2.size()+1; i++)
+	{
+		for (int j = 0; j < s1.size()+1; j++)
+		{
+			matrix[i][j] = 0;
+		}
+	}
+
+
+	int num = eDist(s1, s2, matrix);
+
+
+	for (int i = 0; i < s2.size()+1; i++)
+	{
+		for (int j = 0; j < s1.size()+1; j++)
+		{
+			cout <<"\t"<< matrix[i][j] ;
+		}
+		cout << endl;
+	}
 }
+
+int eDist(string & s1, string & s2, int ** matrix)
+{
+	int lowest = 0;
+	vector<int> vSort;
+	for (int i = 0; i < s2.size()+1; i++)
+	{
+		for (int j = 0; j < s1.size()+1; j++)
+		{
+			if (i == 0 && j==0) {
+				matrix[i][j] = 0;
+			}
+			else if (i == 0 && j > 0 ) {
+				matrix[i][j] = matrix[i][j-1] + 1 ;
+			}
+			else if (i > 0 && j == 0) {
+				matrix[i][j] = matrix[i-1][j] + 1;
+			}
+			else {
+				if (s1.at(j-1) == s2.at(i-1)) {
+					vSort.clear();
+					vSort.push_back(matrix[i-1][j]+1);
+					vSort.push_back(matrix[i - 1][j-1]);
+					vSort.push_back(matrix[i][j - 1]+1);
+					sort(vSort.begin(), vSort.end());
+					matrix[i][j] = vSort[0];
+					
+				}
+				else {
+					vSort.clear();
+					vSort.push_back(matrix[i - 1][j]);
+					vSort.push_back(matrix[i - 1][j - 1]);
+					vSort.push_back(matrix[i][j - 1]);
+					sort(vSort.begin(), vSort.end());
+					matrix[i][j] = vSort[0] + 1;
+				}
+			}
+
+			//matrix[i][j] = 0;
+			
+		}
+	}
+	return 0;
+}
+
