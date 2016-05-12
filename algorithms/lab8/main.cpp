@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 #define N 4
 
@@ -14,6 +15,7 @@ void printPathMountion(int originalMatrix[][N], int ** sumMatrix, int &maxI, int
 
 void lab8ex2();
 int eDist(string &s1, string &s2,int **matrix);
+void printPath(string &s1, string &s2, int **matrix);
 
 void main() {
 
@@ -217,6 +219,9 @@ void lab8ex2()
 		}
 		cout << endl;
 	}
+
+	
+	printPath(s1, s2, matrix);
 }
 
 int eDist(string & s1, string & s2, int ** matrix)
@@ -261,5 +266,89 @@ int eDist(string & s1, string & s2, int ** matrix)
 		}
 	}
 	return 0;
+}
+
+void printPath(string & s1, string & s2, int ** matrix)
+{
+	
+	vector<int> vSort;
+	queue<string> path;
+	int i, j;
+	string temp =s1;
+	string temp2 = "";
+	string temp3 = "";
+	
+	i = s2.size() + 1;
+	j = s1.size() + 1;
+	path.push(s1);
+	
+	while (i-2 > 0 || j-2 > 0) {
+		if  (s1.at(j - 2) != s2.at(i - 2)) {
+			vSort.clear();
+			vSort.push_back(matrix[i - 2][j - 2]);
+			vSort.push_back(matrix[i-1][j - 2]);
+			vSort.push_back(matrix[i - 2][j-1]);
+			
+			sort(vSort.begin(), vSort.end());
+			if (vSort[0] == matrix[i - 2][j - 2]) {
+				//replace
+				temp2 = "";
+				temp3 = "";
+				temp2 += s2.at(i - 2);
+				temp3 += temp.substr(0, j - 2);
+				temp3 += temp2;
+				temp3 += temp.substr( j - 1, temp.size()-1);
+				path.push(temp3);
+				temp = temp3;
+				//temp.replace(j-2,j-2, tmp2);
+				i--;
+				j--;
+			}
+			else if (vSort[0] == matrix[i - 1][j - 2]) {
+				//delete
+				temp3 = "";
+				temp3 += temp.substr(0, j - 2);
+				temp3 += temp.substr(j-1 , temp.size() - 1);
+				path.push(temp3);
+				temp = temp3;
+				j--;
+			}
+			else {
+				//insert
+				temp2 = "";
+				temp3 = "";
+				temp2 += s2.at(i - 2);
+				temp3 += temp.substr(0, j - 1);
+				temp3 += temp2;
+				temp3 += temp.substr(j - 1, temp.size() - 1);
+				path.push(temp3);
+				temp = temp3;
+
+				i--;
+			}
+		}
+		else {
+
+			i--;
+			j--;
+			
+			
+		}
+	}
+	//path.push(s2);
+	cout << "the path is: " << endl;
+	while (!path.empty()){
+		if (path.size() != 1) {
+			cout << path.front() << " -> ";
+		}
+		else {
+			cout << path.front() ;
+		}
+		
+		path.pop();
+	}
+	cout << endl;
+
+
 }
 

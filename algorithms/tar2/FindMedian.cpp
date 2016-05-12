@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
 				else {
 					int med = findMedian(v1, v2, 0, v1.size() - 1, 0, v2.size() - 1);
 					outFile << med;
+					//cout << med << endl;
 				}	
 			}
 

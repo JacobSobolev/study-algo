@@ -1,6 +1,6 @@
 ﻿  FindMedian.cpp
-c:\bitbucket\study-algo\algorithms\tar2\findmedian.cpp(51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\bitbucket\study-algo\algorithms\tar2\findmedian.cpp(56): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\bitbucket\study-algo\algorithms\tar2\findmedian.cpp(63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  tar2.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\tar2.exe
-  tar2.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\tar2.pdb (Partial PDB)
+d:\bitbucket\study-algo\algorithms\tar2\findmedian.cpp(48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tar2\findmedian.cpp(52): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tar2\findmedian.cpp(58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  tar2.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\tar2.exe
+  tar2.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\tar2.pdb (Partial PDB)
