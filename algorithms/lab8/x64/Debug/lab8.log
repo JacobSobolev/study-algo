@@ -1,5 +1,2 @@
-﻿  main.cpp
-d:\bitbucket\study-algo\algorithms\lab8\main.cpp(281): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-d:\bitbucket\study-algo\algorithms\lab8\main.cpp(282): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  lab8.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\lab8.exe
-  lab8.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\lab8.pdb (Partial PDB)
+﻿  lab8.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab8.exe
+  lab8.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab8.pdb (Partial PDB)
