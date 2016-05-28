@@ -17,8 +17,8 @@ void main() {
 
 void lab10ex1()
 {
-	//vector<int> d = {1,4,6};
-	vector<int> d = { 1,5,10,50,100 };
+	vector<int> d = {1,4,6};
+	//vector<int> d = { 1,5,10,50,100 };
 	vector<int> c;
 	int index = 7;
 	int k = 9;

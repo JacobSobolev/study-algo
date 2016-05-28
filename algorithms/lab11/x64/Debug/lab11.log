@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\bitbucket\study-algo\algorithms\lab11\main.cpp(98): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\bitbucket\study-algo\algorithms\lab11\main.cpp(164): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  lab11.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab11.exe
+  lab11.vcxproj -> C:\Bitbucket\study-algo\algorithms\x64\Debug\lab11.pdb (Partial PDB)
