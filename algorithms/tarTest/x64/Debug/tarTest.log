@@ -1,0 +1,9 @@
+﻿  main.cpp
+d:\bitbucket\study-algo\algorithms\tartest\main.cpp(31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tartest\main.cpp(32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tartest\main.cpp(69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tartest\main.cpp(70): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tartest\main.cpp(135): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\bitbucket\study-algo\algorithms\tartest\main.cpp(136): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  tarTest.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\tarTest.exe
+  tarTest.vcxproj -> D:\Bitbucket\study-algo\algorithms\x64\Debug\tarTest.pdb (Partial PDB)
